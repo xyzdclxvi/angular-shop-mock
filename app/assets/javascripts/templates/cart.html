@@ -11,8 +11,8 @@
           <span> = ${{record.product.price * record.product.quantity | number:2}}</span>
           <button ng-hide="record.product.quantity == record.quantity" ng-click="saveRecord(record)" uib-tooltip="Confirm change" class="btn btn-success">x</button>
           <button ng-hide="record.product.quantity == record.quantity" ng-click="revertRecord(record)" uib-tooltip="Revert change" class="btn btn-danger">&lt;</button>
-          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="Confirm change" class="btn disabled">x</button>
-          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="Revert change" class="btn disabled">&lt;</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Confirm change" class="btn disabled">x</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Revert change" class="btn disabled">&lt;</button>
         </div>
       </section>
     </li>

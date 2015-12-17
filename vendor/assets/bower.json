@@ -6,6 +6,7 @@
     "angular-resource": "latest",
     "angular-mocks": "latest",
     "ngstorage": "latest",
-    "bootstrap-sass-official": "latest"
+    "bootstrap-sass-official": "latest",
+    "angular-ui-bootstrap-bower": "latest"
   }
 }

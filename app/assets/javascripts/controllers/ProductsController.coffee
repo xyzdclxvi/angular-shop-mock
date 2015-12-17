@@ -4,10 +4,15 @@ controllers.controller("ProductsController", [ '$scope', '$routeParams', '$locat
     $scope.search = (keywords)-> $location.path("/").search('keywords',keywords)
     $scope.toggleFull = (product)-> product.fullVisible = !product.fullVisible
     $scope.addToCart = (product)->
-      console.log("adding #{product.quantity} x #{product.name} to cart... current cart:")
+      console.log("adding #{product.quantity} x #{product.name} to cart...\nbefore cart:")
       console.log($scope.shoppingList)
-      $scope.shoppingList.push(product: product, quantity: product.quantity)
-      console.log("after: ")
+      index = $scope.shoppingList.findIndex((element, index, array)-> element.product.id == product.id)
+      console.log("index: #{index}")
+      if index == -1
+        $scope.shoppingList.push(product: product, quantity: product.quantity)
+      else
+        $scope.shoppingList[index].quantity += product.quantity
+      console.log("current cart: ")
       console.log($scope.shoppingList)
       cartCalculate()
     $scope.clearCart = ()->

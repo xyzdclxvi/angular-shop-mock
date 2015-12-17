@@ -3,7 +3,7 @@ shopthing = angular.module('shopthing', [
   'ngRoute',
   'ngResource',
   'ngStorage',
-  #'ui.bootstrap',
+  'ui.bootstrap',
   'controllers',
 ])
 

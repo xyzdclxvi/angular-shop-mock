@@ -9,6 +9,7 @@ controllers.controller("CartController", [ '$scope', '$location', 'SharedData',
       $scope.shoppingList = SharedData.ShoppingList
       console.log("cart cleared")
       cartCalculate()
+      $location.path("/")
       $scope.$apply()
     $scope.goBack = ()-> $location.path("/")
     $scope.logCart = ()->
@@ -19,7 +20,11 @@ controllers.controller("CartController", [ '$scope', '$location', 'SharedData',
     $scope.saveRecord = (record)->
       console.log("saving")
       console.log(record)
-      record.quantity = record.product.quantity
+      console.log($scope.shoppingList.indexOf(record))
+      if record.product.quantity == undefined
+        $scope.shoppingList.splice($scope.shoppingList.indexOf(record),1)
+      else
+        record.quantity = record.product.quantity
       cartCalculate()
     $scope.revertRecord = (record)->
       record.product.quantity = record.quantity

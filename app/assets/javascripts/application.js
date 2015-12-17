@@ -17,4 +17,6 @@
 //= require angular-resource/angular-resource
 //= require angular-rails-templates
 //= require ngstorage/ngStorage
+//= require angular-ui-bootstrap-bower/ui-bootstrap.js
+//= require angular-ui-bootstrap-bower/ui-bootstrap-tpls.js
 //= require_tree .
