@@ -10,7 +10,8 @@
     <div class="form-group col-md-6 col-md-offset-3 text-center">
       <button ng-click="search(keywords)" class="btn btn-primary btn-lg">Search</button>
     </div>
-    <button ng-click="showCart()" class="btn btn-info">Show Shopping Cart</button>
+    <button ng-click="showCart()" class="btn btn-info">Show Cart</button>
+    <button ng-click="logCart()" class="btn btn-info">Log Cart</button>
     <button ng-click="clearCart()" class="btn btn-info">Clear Shopping Cart</button>
   </form>
 </section>
@@ -42,4 +43,5 @@
     {{record.product.name}}: {{record.product.price}} x {{record.quantity}} = {{record.product.price*record.quantity | number:2}}
   </p>
 <div>
+<p>Items in cart: {{cartCount}}</p>
 <p>Cart sum: {{cartSum | number:2}}</p>

@@ -1,0 +1,29 @@
+<button ng-click="logCart()" class="btn btn-info">Log Cart</button>
+<section class="row">
+  <h1 class="text-center h2">Products in Your Cart:</h1>
+  <ul class="list-unstyled">
+    <li ng-form="recordsForm" ng-repeat="record in shoppingList">
+      <section class="well col-md-6 col-md-offset-3">
+        <h1 class="h3 col-md-6" style="margin-top: 0">{{record.product.name}}</h1>
+        <div class="pull-right">
+          <span>${{record.product.price}}  x  </span>
+          <input type="number" name="qua" min="1" step="1" style="width:22px" ng-model="record.product.quantity" ng-init="record.product.quantity=record.quantity">
+          <span> = ${{record.product.price * record.product.quantity | number:2}}</span>
+          <button ng-hide="record.product.quantity == record.quantity" ng-click="saveRecord(record)" uib-tooltip="Confirm change" class="btn btn-success">x</button>
+          <button ng-hide="record.product.quantity == record.quantity" ng-click="revertRecord(record)" uib-tooltip="Revert change" class="btn btn-danger">&lt;</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="Confirm change" class="btn disabled">x</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="Revert change" class="btn disabled">&lt;</button>
+        </div>
+      </section>
+    </li>
+  </ul>
+</section>
+<section class="col-md-6 col-md-offset-3">
+  <p>Items in cart: {{cartCount}}</p>
+  <p>Cart sum: {{cartSum | number:2}}</p>
+</section>
+<section class="col-md-6 col-md-offset-3">
+  <button ng-click="goBack()" class="btn btn-info">Back</button>
+  <button confirmed-click-action="clearCart()" ng-confirm-click="Are you sure?" class="btn btn-info">Clear Cart</button>
+  <button confirmed-click-action="sendOrder()" ng-confirm-click="Are you sure?" class="btn btn-info pull-right">Order now!</button>
+</section>
