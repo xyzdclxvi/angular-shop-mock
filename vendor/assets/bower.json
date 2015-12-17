@@ -3,6 +3,9 @@
   "dependencies": {
     "angular": "latest",
     "angular-route": "latest",
+    "angular-resource": "latest",
+    "angular-mocks": "latest",
+    "ngstorage": "latest",
     "bootstrap-sass-official": "latest"
   }
 }
