@@ -1,6 +1,29 @@
-<button ng-click="logCart()" class="btn btn-info">Log Cart</button>
+<nav class="row navbar navbar-default">
+  <div class="col-md-6 col-md-offset-3 container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="disabled"><a href="#/">Home</a></li>
+        <li><a href="#/">Products<span class="sr-only"> (current)</span></a></li>
+        <li class="disabled"><a href="#/">Contact</a></li>
+        <li class="disabled"><a href="#/">Account</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button class="btn btn-default active" ng-click="goBack()" style="margin-top: 8px">Cart ({{cartCount}})</button></li>
+        <li><a style="color: #31708f"><strong uib-tooltip="total cost" tooltip-placement="bottom">${{cartSum | number:2}}</strong></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <section class="row">
-  <h1 class="text-center h2">Products in Your Cart:</h1>
+  <h1 class="text-center h2" ng-if="shoppingList.length > 0">Products in Your Cart:</h1>
+  <h1 class="text-center h2" ng-hide="shoppingList.length > 0">Your Cart is empty.</h1>
   <ul class="list-unstyled">
     <li ng-form="recordsForm" ng-repeat="record in shoppingList">
       <section class="well col-md-6 col-md-offset-3">
@@ -18,12 +41,52 @@
     </li>
   </ul>
 </section>
+
+<!-- order fields -->
+<section class="row" ng-if="orderVisible">
+  <hr>
+  <h1 class="text-center h3">Please fill in your shipping information:</h1>
+  <form name="orderForm" novalidate form-locator>
+    <div class="form-group col-md-6 col-md-offset-3">
+      <input type="text" autofocus class="form-control" placeholder="First name" name="firstname" ng-model="firstname" required>
+      <span style="color:red" ng-show="orderForm.firstname.$dirty && orderForm.firstname.$invalid">
+        First name is required.
+      </span>
+      <input type="text" class="form-control" placeholder="Last name" name="lastname" ng-model="lastname" required>
+      <span style="color:red" ng-show="orderForm.lastname.$dirty && orderForm.lastname.$invalid">
+        Last name is required.
+      </span>
+      <input type="text" class="form-control" placeholder="Address" name="address" ng-model="address" required>
+      <span style="color:red" ng-show="orderForm.address.$dirty && orderForm.address.$invalid">
+        Address is required.
+      </span>
+      <input type="email" class="form-control" placeholder="E-mail (optional)" name="email" ng-model="email">
+      <span style="color:red" ng-show="orderForm.email.$dirty && orderForm.email.$invalid">
+        Invalid email address.
+      </span>
+      <input type="text" class="form-control" placeholder="Telephone number (optional)" name="phonenumber" ng-model="phonenumber">
+    </div>
+  </form>
+</section>
+
+<!-- totals -->
 <section class="col-md-6 col-md-offset-3">
   <p>Items in cart: {{cartCount}}</p>
-  <p>Cart sum: {{cartSum | number:2}}</p>
+  <p>Total price: <strong>${{cartSum | number:2}}<strong></p>
 </section>
-<section class="col-md-6 col-md-offset-3">
+
+<!-- bottom buttons -->
+<section class="col-md-6 col-md-offset-3" ng-hide="orderVisible">
   <button ng-click="goBack()" class="btn btn-info">Back</button>
-  <button confirmed-click-action="clearCart()" ng-confirm-click="Are you sure?" class="btn btn-info">Clear Cart</button>
-  <button confirmed-click-action="sendOrder()" ng-confirm-click="Are you sure?" class="btn btn-info pull-right">Order now!</button>
+  <button confirmed-click-action="clearCart()" ng-confirm-click="Are you sure you want to clear your cart?" class="btn btn-info" ng-if="shoppingList.length > 0">Clear Cart</button>
+  <button ng-click="toggleOrder()" class="btn btn-info pull-right" ng-if="shoppingList.length > 0">Order</button>
+  <button class="btn btn-info disabled" ng-hide="shoppingList.length > 0">Clear Cart</button>
+  <button class="btn btn-info pull-right disabled" ng-hide="shoppingList.length > 0">Order</button>
+</section>
+
+<section class="col-md-6 col-md-offset-3" ng-if="orderVisible">
+  <button ng-click="goBack()" class="btn btn-info">Back</button>
+  <button ng-click="toggleOrder()" class="btn btn-info">Cancel</button>
+  <button ng-click="logOrder()" class="btn btn-info">show</button>
+  <button confirmed-click-action="sendOrder()" ng-confirm-click="Are you sure?" ng-disabled="orderForm.$invalid" class="btn btn-info pull-right">Send Order now!</button>
 </section>

@@ -30,6 +30,10 @@ shopthing.directive( 'ngConfirmClick', [() ->
         $scope.$eval(clickAction)
 )])
 
+shopthing.directive('formLocator', ()->
+  link: (scope)-> scope.$emit('formLocator')
+)
+
 shopthing.factory('SharedData', [ '$resource', '$window', '$localStorage',
   ($resource,$window,$localStorage)->
     Product = $resource('/products/:productId', { productId: "@id", format: 'json' })
