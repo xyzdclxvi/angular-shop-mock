@@ -57,6 +57,7 @@
         </div>
         <div class="col-md-12" ng-if="product.fullVisible">
           <hr>
+          <img ng-src="{{product.image_link}}" class="img-thumb pull-left" />
           <p ng-click="toggleFull(product)">{{product.description}}</p>
         </div>
       </section>

@@ -87,6 +87,5 @@
 <section class="col-md-6 col-md-offset-3" ng-if="orderVisible">
   <button ng-click="goBack()" class="btn btn-info">Back</button>
   <button ng-click="toggleOrder()" class="btn btn-info">Cancel</button>
-  <button ng-click="logOrder()" class="btn btn-info">show</button>
   <button confirmed-click-action="sendOrder()" ng-confirm-click="Are you sure?" ng-disabled="orderForm.$invalid" class="btn btn-info pull-right">Send Order now!</button>
 </section>
