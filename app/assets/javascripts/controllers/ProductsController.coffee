@@ -14,6 +14,10 @@ controllers.controller("ProductsController", [ '$scope', '$routeParams', '$locat
         $scope.shoppingList[index].quantity += product.quantity
       console.log("current cart: ")
       console.log($scope.shoppingList)
+      $('#cart-button').addClass('pulse-once')
+      setTimeout(
+        ()-> $('#cart-button').removeClass('pulse-once'),
+        1000)
       cartCalculate()
     $scope.clearCart = ()->
       SharedData.ClearCart()

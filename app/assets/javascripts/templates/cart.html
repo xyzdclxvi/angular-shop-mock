@@ -14,14 +14,19 @@
         <li class="disabled"><a href="#/">Account</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><button class="btn btn-default active" ng-click="goBack()" style="margin-top: 8px">Cart ({{cartCount}})</button></li>
+        <li><button id="cart-button" class="btn btn-default active" ng-click="goBack()" style="margin-top: 8px">Cart ({{cartCount}})</button></li>
         <li><a style="color: #31708f"><strong uib-tooltip="total cost" tooltip-placement="bottom">${{cartSum | number:2}}</strong></a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<section class="row">
+<section class="row" ng-if="orderSent">
+  <h1 class="text-center" style="margin-top: 50px;margin-bottom: 50px;">Thank You! Your Order Has Been successfully processed.</h1>
+  <hr>
+</section>
+
+<section class="row" ng-hide="orderSent">
   <h1 class="text-center h2" ng-if="shoppingList.length > 0">Products in Your Cart:</h1>
   <h1 class="text-center h2" ng-hide="shoppingList.length > 0">Your Cart is empty.</h1>
   <ul class="list-unstyled">
@@ -32,10 +37,10 @@
           <span>${{record.product.price}}  x  </span>
           <input type="number" name="qua" min="1" step="1" style="width:22px" ng-model="record.product.quantity" ng-init="record.product.quantity=record.quantity">
           <span> = ${{record.product.price * record.product.quantity | number:2}}</span>
-          <button ng-hide="record.product.quantity == record.quantity" ng-click="saveRecord(record)" uib-tooltip="Confirm change" class="btn btn-success">x</button>
-          <button ng-hide="record.product.quantity == record.quantity" ng-click="revertRecord(record)" uib-tooltip="Revert change" class="btn btn-danger">&lt;</button>
-          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Confirm change" class="btn disabled">x</button>
-          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Revert change" class="btn disabled">&lt;</button>
+          <button ng-hide="record.product.quantity == record.quantity" ng-click="saveRecord(record)" uib-tooltip="Confirm change" class="btn btn-success">&#x2713;</button>
+          <button ng-hide="record.product.quantity == record.quantity" ng-click="revertRecord(record)" uib-tooltip="Revert change" class="btn btn-danger">&#x2717;</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Confirm change" class="btn disabled">&#x2713;</button>
+          <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Revert change" class="btn disabled">&#x2717;</button>
         </div>
       </section>
     </li>
@@ -70,7 +75,7 @@
 </section>
 
 <!-- totals -->
-<section class="col-md-6 col-md-offset-3">
+<section class="col-md-6 col-md-offset-3" ng-hide="orderSent">
   <p>Items in cart: {{cartCount}}</p>
   <p>Total price: <strong>${{cartSum | number:2}}<strong></p>
 </section>

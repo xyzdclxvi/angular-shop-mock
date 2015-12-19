@@ -39,3 +39,14 @@ input[type=number]::-webkit-outer-spin-button {
   border: 1px dotted #ddd;
   border-radius: 3px;
 }
+
+.pulse-once {
+  animation: 0.5s pulse linear 1;
+  -webkit-animation: 0.5s pulse linear 1;
+}
+
+@-webkit-keyframes pulse {
+  from { background-color: #ffffff; -webkit-box-shadow: 0 0 9px #fff; }
+  50% { background-color: #5bc0de; -webkit-box-shadow: 0 0 18px #5bc0de; }
+  to { background-color: #ffffff; -webkit-box-shadow: 0 0 9px #fff; }
+}

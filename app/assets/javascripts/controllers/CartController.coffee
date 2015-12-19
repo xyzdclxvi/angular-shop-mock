@@ -4,7 +4,8 @@ controllers.controller("CartController", [ '$scope', '$location', 'SharedData',
     $scope.sendOrder = ()->
       #does nothing - its only a mock
       $scope.clearCart()
-      $location.path("/")
+      $scope.orderSent = true
+      #$location.path("/")
     $scope.clearCart = ()->
       SharedData.ClearCart()
       $scope.shoppingList = SharedData.ShoppingList
@@ -47,6 +48,7 @@ controllers.controller("CartController", [ '$scope', '$location', 'SharedData',
     
     $scope.shoppingList = SharedData.ShoppingList
     $scope.orderVisible = false
+    $scope.orderSent = false
     
     cartCalculate()
 ])

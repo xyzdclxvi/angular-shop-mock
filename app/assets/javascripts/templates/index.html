@@ -14,7 +14,7 @@
         <li class="disabled"><a href="#/">Account</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><button class="btn btn-default" ng-click="showCart()" style="margin-top: 8px">Cart ({{cartCount}})</button></li>
+        <li><button id="cart-button" class="btn btn-default" ng-click="showCart()" style="margin-top: 8px">Cart ({{cartCount}})</button></li>
         <li><a style="color: #31708f"><strong uib-tooltip="total cost" tooltip-placement="bottom">${{cartSum | number:2}}</strong></a></li>
       </ul>
     </div>
