@@ -34,9 +34,9 @@
       <section class="well col-md-6 col-md-offset-3">
         <h1 class="h3 col-md-6" style="margin-top: 0">{{record.product.name}}</h1>
         <div class="pull-right">
-          <span>${{record.product.price}}  x  </span>
+          <span><strong>${{record.product.price}}</strong> &#215; </span>
           <input type="number" name="qua" min="1" step="1" style="width:22px" ng-model="record.product.quantity" ng-init="record.product.quantity=record.quantity">
-          <span> = ${{record.product.price * record.product.quantity | number:2}}</span>
+          <span> = <strong>${{record.product.price * record.product.quantity | number:2}}</strong></span>
           <button ng-hide="record.product.quantity == record.quantity" ng-click="saveRecord(record)" uib-tooltip="Confirm change" class="btn btn-success">&#x2713;</button>
           <button ng-hide="record.product.quantity == record.quantity" ng-click="revertRecord(record)" uib-tooltip="Revert change" class="btn btn-danger">&#x2717;</button>
           <button ng-show="record.product.quantity == record.quantity" uib-tooltip="(inactive) Confirm change" class="btn disabled">&#x2713;</button>
